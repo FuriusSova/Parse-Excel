@@ -15,6 +15,10 @@ if (data.length < 1) {
 } else if (data.length > 1) {
     readlineSync.question('You are trying to parse more than 1 file\nPress enter to exit');
     process.exit(-1);
+} else if (data.includes("put your xlsx file here.txt")) {
+    fs.unlinkSync(`./filesForParsing/${data[data.indexOf("put your xlsx file here.txt")]}`);
+    readlineSync.question('Please put your xlsx file in filesForParsing folder\nPress enter to exit');
+    process.exit(-1);
 }
 
 options.workBook = xlsx.readFile(`filesForParsing/${data[0]}`);
